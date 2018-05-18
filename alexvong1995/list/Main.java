@@ -70,9 +70,9 @@ class U
         List ls2;
 
         ls2 = new List();
-        z_ = ls2.set_to_pair();
         z_ = ls2.set_first(n);
         z_ = ls2.set_rest(ls);
+        z_ = ls2.set_length(ls.length_() + 1);
 
         return ls2;
     }
@@ -82,7 +82,7 @@ class U
         List ls;
 
         ls = new List();
-        z_ = ls.set_to_nil();
+        z_ = ls.set_length(0);
 
         return ls;
     }
@@ -92,17 +92,13 @@ class U
 class List
 {
     int z_;
-    boolean is_null;
     int first;
     List rest;
-
-    public boolean is_null() {return is_null;}
-
-    public int set_to_nil() {is_null = true; return 0;}
-    public int set_to_pair() {is_null = false; return 0;}
+    int len;
 
     public int set_first(int n) {first = n; return 0;}
     public int set_rest(List ls) {rest = ls; return 0;}
+    public int set_length(int n) {len = n; return 0;}
 
     public int list_set(int k, int n)
     {
@@ -126,15 +122,5 @@ class List
         return n;
     }
 
-    public int length_()
-    {
-        int len;
-
-        if (is_null)
-            len = 0;
-        else
-            len = rest.length_() + 1;
-
-        return len;
-    }
+    public int length_() {return len;}
 }
